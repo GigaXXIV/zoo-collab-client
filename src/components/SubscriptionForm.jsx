@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+
+import { topics } from '../utils/topics';
 
 export default function SubscriptionForm() {
     const {
@@ -15,6 +17,19 @@ export default function SubscriptionForm() {
     };
 
     const { reset } = useForm();
+
+    // subscription topics
+    const [checkedState, setCheckedState] = useState(
+        new Array(topics.length).fill(false)
+    )
+
+    const handleOnChange = (position) => {
+        const updatedCheckedState = checkedState.map((item, index) =>
+            index === position ? !item : item
+        );
+        setCheckedState(updatedCheckedState)
+    }
+
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -32,7 +47,7 @@ export default function SubscriptionForm() {
                         }
                     })}
                 />
-                { errors.firstName && <p className='error-msg'>{errors.firstName.message}</p>}
+                {errors.firstName && <p className='error-msg'>{errors.firstName.message}</p>}
             </div>
             <div className="form-control">
                 <label>Last Name</label>
@@ -48,8 +63,7 @@ export default function SubscriptionForm() {
                         }
                     })}
                 />
-                { errors.lastName && <p className='error-msg'>{errors.lastName.message}</p>}
-
+                {errors.lastName && <p className='error-msg'>{errors.lastName.message}</p>}
             </div>
             <div className="form-control">
                 <label>Email Address</label>
@@ -65,8 +79,32 @@ export default function SubscriptionForm() {
                         },
                     })}
                 />
-                { errors.email && <p className='error-msg'>{errors.email.message}</p>}
+                {errors.email && <p className='error-msg'>{errors.email.message}</p>}
 
+            </div>
+            <div className='topics-container'>
+                <label>I would like to receive: </label>
+                <div>
+                    <ul className='topics'>
+                        {topics.map((topic, index) => {
+                            return (
+                                <li key={index} >
+                                    <label htmlFor={`checkbox-${index}`} className="option">{topic}
+                                        <input
+                                            type="checkbox"
+                                            id={`checkbox-${index}`}
+                                            name={topic}
+                                            value={topic}
+                                            checked={checkedState[index]}
+                                            onChange={() => handleOnChange(index)}
+                                        />
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
             </div>
             <div className="form-control">
                 <button type="submit">Subscribe</button>
