@@ -1,33 +1,76 @@
-import React, { Component } from "react";
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
-export default class SubscriptionForm extends Component {
-    render() {
-        return (
-            <form>
-                <div>
-                    <label htmlFor="first-name">First Name</label>
-                    <input type="text" name="first-name" id="first-name" alt="first name" placeholder="First name" />
-                </div>
-                <div>
-                    <label htmlFor="last-name">Last Name</label>
-                    <input type="text" name="last-name" id="last-name" alt="last name" placeholder="Last name"/>
-                </div>
-                <div>
-                    <label htmlFor="email">Email Address</label>
-                    <input type="email" name="email" id="email" alt="email address" placeholder="Email adress" />
-                </div>
-                <div>
-                    <p>I would like to receive: </p>
-                    <input type="checkbox" name="attractions" id="attractions" value="attractions" />
-                    <label for="attractions">Attractions</label>
-                    <input type="checkbox" name="volunteer-opportunities" id="volunteer-opportunities" value="volunteer-opportunities" />
-                    <label for="attractions">Volunteer Opportunities</label>
-                    <input type="checkbox" name="promotions" id="promotions" value="promotions" />
-                    <label for="promotions">Promotions</label>
+export default function SubscriptionForm() {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
-                </div>
+    console.log({ ...register("firstName") }, { ...register("lastName") }, { ...register("email") })
 
-            </form>
-        )
-    }
+    const onSubmit = (data) => {
+        console.log(data);
+    };
+
+    const { reset } = useForm();
+
+    return (
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-control">
+                <label>First Name</label>
+                <input
+                    type="text"
+                    name="first-name"
+                    {...register("firstName", {
+                        required: "First name is required.",
+                        pattern: {
+                            value: /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/,
+                            message: "Must contain only letters."
+                        }
+                    })}
+                />
+                { errors.firstName && <p className='error-msg'>{errors.firstName.message}</p>}
+            </div>
+            <div className="form-control">
+                <label>Last Name</label>
+                <input
+                    type="text"
+                    name="last-name"
+                    {...register("lastName", {
+                        required: "Last name is required.",
+                        pattern: {
+                            value: /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/,
+                            message: "Must contain only letters."
+                        }
+                    })}
+                />
+                { errors.lastName && <p className='error-msg'>{errors.lastName.message}</p>}
+
+            </div>
+            <div className="form-control">
+                <label>Email</label>
+                <input
+                    type="text"
+                    name="email"
+                    {...register("email", {
+                        required: "Email is required.",
+                        pattern: {
+                            value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                            message: "Email is not valid."
+                        },
+                    })}
+                />
+                { errors.email && <p className='error-msg'>{errors.email.message}</p>}
+
+            </div>
+            <div className="form-control">
+                <label>
+                    <button type="submit">Subscribe</button>
+                </label>
+            </div>
+
+        </form>
+    )
 }
