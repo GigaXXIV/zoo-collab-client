@@ -5,5 +5,11 @@
 }
 
 .App {
+  height: 100vh;
   text-align: center;
+  background-color: forestgreen;
+  background-image: url(./assets/koala.jpg);
+  background-position: center;
+  background-size: cover;
+  color: white;
 }
