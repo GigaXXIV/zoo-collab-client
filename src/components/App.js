@@ -9,8 +9,15 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Button name="SUBSCRIBE"/>
-      <SubscriptionForm />
+      <div class="subscription-call">
+        <p>Get discount and come have fun!</p>
+        <p>Kids join free on adult memberships.</p>
+        {/* <Button name="SUBSCRIBE" /> */}
+      </div>
+      <div class="form-container">
+        <h3>ZOO<span>Newsletter</span></h3>
+        <SubscriptionForm />
+      </div>
     </div>
   );
 }

@@ -1,7 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@500&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  border-style: none;
 }
 
 .App {
@@ -12,4 +16,86 @@
   background-position: center;
   background-size: cover;
   color: white;
+  font-family: "Montserrat";
+}
+
+/* Form container */
+.form-container {
+  position: absolute;
+  border: 1px solid red;
+  background-color: #9c9999;
+  color: #000000;
+  border-radius: 5px;
+  padding: 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h3 {
+  color: #386400;
+  font-size: 40px;
+  line-height: 48px;
+  text-align: center;
+}
+
+.form-container span {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+  display: inline-block;
+  padding-left: 5px;
+}
+
+/* form-control is to style each pair of label and input */
+.form-control {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.form-control label {
+  padding-left: 10px;
+}
+
+.form-control input,
+button {
+  height: 30px;
+  width: 289px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.form-control input::placeholder {
+  color: #8c8686;
+  padding-left: 10px;
+}
+
+/* styling error message */
+.error-msg {
+  color: #df3232;
+  font-size: 13px;
+  line-height: 16px;
+  padding-left: 10px;
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
+
+.form-control button {
+  background-color: #386400;
+  margin-top: 10px;
+}
+
+/* ------------Style header ----------------- */
+.header {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-size: 64px;
+  line-height: 155px;
+  text-align: center;
+  color: #386400;
 }

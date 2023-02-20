@@ -23,6 +23,7 @@ export default function SubscriptionForm() {
                 <input
                     type="text"
                     name="first-name"
+                    placeholder='First name'
                     {...register("firstName", {
                         required: "First name is required.",
                         pattern: {
@@ -38,6 +39,7 @@ export default function SubscriptionForm() {
                 <input
                     type="text"
                     name="last-name"
+                    placeholder='Last name'
                     {...register("lastName", {
                         required: "Last name is required.",
                         pattern: {
@@ -50,10 +52,11 @@ export default function SubscriptionForm() {
 
             </div>
             <div className="form-control">
-                <label>Email</label>
+                <label>Email Address</label>
                 <input
                     type="text"
                     name="email"
+                    placeholder='Email address'
                     {...register("email", {
                         required: "Email is required.",
                         pattern: {
@@ -66,9 +69,7 @@ export default function SubscriptionForm() {
 
             </div>
             <div className="form-control">
-                <label>
-                    <button type="submit">Subscribe</button>
-                </label>
+                <button type="submit">Subscribe</button>
             </div>
 
         </form>
