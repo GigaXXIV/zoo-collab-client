@@ -1,6 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@500&display=swap');
 
+:root {
+--zoo-green1: #1f8400;
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -13,28 +18,30 @@
   height: 100vh;
   text-align: center;
   background-color: forestgreen;
-  background-image: url(./assets/koala.jpg);
+  background-image: url(./assets/koala2.jpg);
   background-position: center;
   background-size: cover;
-  color: white;
+  color: rgb(0, 0, 0);
   font-family: "Montserrat";
+  padding-top: 35px;
 }
 
 /* Form container */
 .form-container {
   position: absolute;
-  border: 1px solid red;
-  background-color: #9c9999;
-  color: #000000;
-  border-radius: 5px;
-  padding: 30px;
-  top: 50%;
+  /* border: 1px solid red; */
+  background-color: rgba(32, 40, 26, 0.757);
+  backdrop-filter: blur(5px);
+  color: whitesmoke;
+  border-radius: 10px;
+  padding: 40px;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 h3 {
-  color: #386400;
+  color: var(--zoo-green1);
   font-size: 40px;
   line-height: 48px;
   text-align: center;
@@ -45,9 +52,15 @@ h3 {
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  color: #000000;
+  color: whitesmoke;
   display: inline-block;
   padding-left: 5px;
+}
+
+.welcome {
+  padding-top: 5px;
+  padding-bottom: 40px;
+
 }
 
 /* form-control is to style each pair of label and input */
@@ -89,7 +102,7 @@ button {
 }
 
 .form-control button {
-  background-color: #386400;
+  background-color: var(--zoo-green1);
   margin-top: 10px;
 }
 
@@ -100,7 +113,7 @@ button {
   font-size: 64px;
   line-height: 155px;
   text-align: center;
-  color: #386400;
+  color: var(--zoo-green1);
 }
 
 .subscription-call {
