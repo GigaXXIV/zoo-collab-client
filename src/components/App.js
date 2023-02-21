@@ -6,30 +6,16 @@ import axios from "axios";
 
 import "../App.css";
 
-// import axios from "axios"
-// const API_URL = `http://localhost:3000/subscriptions.json`;
-
-// function getAPIData() {
-//   return axios.get(API_URL).then((response) => response.data);
-// }
+const SUBSCRIPTION_URL = `http://localhost:3000/subscriptions.json`;
 
 function App() {
-  // const [subscriptions, setSubscriptions] = useState([])
-
-  // useEffect(() => {
-  //   let mounted = true;
-  //   getAPIData().then((data) => {
-  //     if (mounted) {
-  //       setSubscriptions(data);
-  //     }
-  //   });
-  //   return () => (mounted = false)
-  // }, [])
 
   const formRef = useRef();
 
   // useRef to control the display of Welcome
   const welcomeRef = useRef();
+
+  const thanksRef = useRef();
 
   // handle click on the Subscribe button
   const handleClick = (e) => {
@@ -43,7 +29,8 @@ function App() {
       <Header />
       <div className="subscription-call"></div>
       <Welcome handleClick={handleClick} welcomeRef={welcomeRef} />
-      <SubscriptionForm formRef={formRef} />
+      <SubscriptionForm formRef={formRef} thanksRef={thanksRef} />
+      <Thanks thanksRef={thanksRef} />
     </div>
   );
 }
@@ -82,14 +69,13 @@ function Welcome(props) {
 }
 
 function SubscriptionForm(props) {
-  const SUBSCRIPTION_URL = `http://localhost:3000/subscriptions.json`;
-
   // useRef to control the display of the Modal "Subscription Form"
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm({
     defaultValues: {
       firstName: "",
@@ -117,10 +103,11 @@ function SubscriptionForm(props) {
       })
       .then((response) => {
         console.log(response.data);
+        reset();
+        props.formRef.current.style.display = 'none';
+        props.thanksRef.current.style.display = '';
       });
   };
-
-  const { reset } = useForm();
 
   const topics = [
     "Attractions",
@@ -157,7 +144,7 @@ function SubscriptionForm(props) {
                 {...register("firstName", {
                   required: "First name is required.",
                   pattern: {
-                    value: /[A-ZÀ-ÿa-z]+[ ]/,
+                    value: /[a-zA-Z]{1,}/,
                     message: "Must contain only letters.",
                   },
                 })}
@@ -175,7 +162,7 @@ function SubscriptionForm(props) {
                 {...register("lastName", {
                   required: "Last name is required.",
                   pattern: {
-                    value: /[A-ZÀ-ÿa-z]+[ ]/,
+                    value: /[a-zA-Z]{1,}/,
                     message: "Must contain only letters.",
                   },
                 })}
@@ -234,4 +221,19 @@ function SubscriptionForm(props) {
       </div>
     </div>
   );
+}
+
+
+function Thanks(props) {
+  return (
+      <div
+        className="welcome"
+        ref={props.thanksRef}
+        style={{ display: "none" }}
+      >
+        <h3>ZOO</h3>
+        <p>Thanks!</p>
+        <p>You have been successfully subscribed!</p>
+      </div>
+    )
 }
