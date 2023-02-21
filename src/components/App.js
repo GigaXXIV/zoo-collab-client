@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 
 import "../App.css";
-import Header from "./Header";
 
 // import axios from "axios"
 // const API_URL = `http://localhost:3000/subscriptions.json`;
@@ -50,6 +49,14 @@ function App() {
 }
 
 export default App;
+
+function Header() {
+  return (
+      <div className="header">
+          <h1>ZOO</h1>
+      </div>
+  )
+}
 
 function Welcome(props) {
   return (
