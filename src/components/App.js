@@ -71,7 +71,7 @@ function Welcome(props) {
             Don't forget, kids join free on an adult membership!
           </p>
           <div className="button-position">
-            <button className="subbutton" onClick={props.handleClick}>
+            <button onClick={props.handleClick}>
               Subscribe!
             </button>
           </div>
