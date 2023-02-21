@@ -1,6 +1,5 @@
 import '../App.css';
 import Header from './Header';
-import Button from './Button';
 import SubscriptionForm from './SubscriptionForm';
 import { useEffect, useState } from "react";
 import axios from "axios"
@@ -11,8 +10,6 @@ const API_URL = `http://localhost:3000/subscriptions.json`;
 function getAPIData() {
   return axios.get(API_URL).then((response) => response.data);
 }
-
-
 
 
 
@@ -32,12 +29,12 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <div class="subscription-call">
-      </div>  
+      <div className="subscription-call">
+      </div>
       <Welcome />
         {/* <SubscriptionForm subscriptions={subscriptions} /> */}
       </div>
-      
+
   );
 }
 
