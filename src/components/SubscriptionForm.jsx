@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
 export default function SubscriptionForm(props) {
   const SUBSCRIPTION_URL = `http://localhost:3000/subscriptions.json`;
+
+  // useRef to control the display of the Modal "Subscription Form"
+  const formRef = useRef();
 
   const {
     register,
@@ -37,7 +40,7 @@ export default function SubscriptionForm(props) {
   const topics = ['Attractions', 'Promotions', 'Latest Events', 'Volunteer Opportunities', 'Sponsorship News', 'Marketing']
 
   return (
-    <div className="modal__backdrop">
+    <div className="modal__backdrop" style={{display: 'none'}} ref={formRef.current}>
       <div className="modal__container">
         <div class="form-container">
           <div>
