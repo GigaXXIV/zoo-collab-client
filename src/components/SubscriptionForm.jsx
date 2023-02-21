@@ -14,7 +14,7 @@ export default function SubscriptionForm(props) {
     defaultValues: {
       firstName: '',
       lastName: '',
-      topics: [],
+      topics: '',
     }
   });
 
